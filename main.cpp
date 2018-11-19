@@ -108,11 +108,10 @@ void run_with_pipes(int * status_address, vector <string> pipes) {
         if(pipe(fds + i*2) < 0) {
             perror("At the beginning error");
             *status_address = ERROR;
-            exit(EXIT_FAILURE);
         }
     }
 
-    int j = 0;
+
     while(pipe_number <= pipes.size()) {
 
         pid = fork();
