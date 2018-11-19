@@ -2,31 +2,34 @@
 #include <vector>
 #include <string>
 #include <unistd.h>
-#include <sys/types.h>
 #include <pwd.h>
 #include <string.h>
 #include <stdio.h>
+#include <fcntl.h>
+#include <map>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <utility>
+#include <cstring>
 
 using namespace std;
-
-
-const int EXIT =  777;
-const int OK =  1;
-const int ERROR =  666;
-const int PATHMAX =  1000;
-
-const string path = "path";
-const string dir = "dir";
-
 //поиск домашней папки
-struct passwd *pw = getpwuid(getuid());
-const char *homedir = pw->pw_dir;
 
 
-vector<string> split(const string& commands);
-string my_pwd(string s, int * status_address);
-void get_started(int * status_address);
+#include "consts.h"
+#include "string_functions.h"
+#include "my_functions.h"
+
+
+
 void in_progress(int * status_address);
+
+string run_without_pipes(int * status_address, vector <string> pipes, map <string, int> mapping);
+
+void get_started(int * status_address);
+
+void run_with_pipes(int * status_address, vector <string> pipes);
+
 
 
 int main() {
@@ -43,112 +46,170 @@ int main() {
 void get_started(int * status_address) {
 
     cout << "Let's get started!\n";
-    string type_of_way = "path";
 
-    string start = my_pwd(type_of_way, status_address);
+    string start = my_pwd(dir, status_address);
+
     cout << start << " > ";
 
 }
 
 void in_progress(int * status_address) {
 
+    map <string, int> mapping;
+
+    mapping["pwd"]  = mine_pwd;
+    mapping["cd"]    = mine_cd;
+    mapping["exit"] = mine_exit;
+    mapping["time"]  = mine_time;
+
+
     string commands_line;
     string result;
 
-    vector<string> commands_vector = split(commands_line);
-
     while (*status_address != EXIT) {
+
         getline(cin, commands_line);
+        vector <string> pipes = split_for_pipes(commands_line);
 
-        commands_vector = split(commands_line);
+        if (pipes.size() == 1) {
+            result = run_without_pipes(status_address, pipes, mapping);
+        }
 
-        if (commands_vector.size() == 1) {
+        else {
+            run_with_pipes(status_address, pipes);
+        }
 
-            if (commands_vector[0] == "pwd") {
-                result = my_pwd("directory", status_address);
-            }
 
-            if (commands_vector[0] == "cd") {
-                if(chdir(homedir) == 0) {
-                    *status_address = OK;
-                }
-                else
+        if (*status_address == EXIT) {
+            break;
+        }
+
+
+        string current_place = my_pwd(dir, status_address);
+        cout << current_place << " > " << result;
+        result = "";
+
+
+    }
+
+}
+
+void run_with_pipes(int * status_address, vector <string> pipes) {
+
+    int status;
+    int i = 0;
+    pid_t pid;
+
+    int pipe_number  = 0;
+    int gates_counter = 0;
+    int fds[2*pipes.size()];
+
+    for(i = 0; i < (pipes.size()); i++){
+        if(pipe(fds + i*2) < 0) {
+            perror("At the beginning error");
+            *status_address = ERROR;
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    int j = 0;
+    while(pipe_number <= pipes.size()) {
+
+        pid = fork();
+
+        if(pid == 0) {
+
+            // делаем перенаправление входа если не первый pipe
+            // аналгично вызод если не последний
+
+            if(pipe_number+1 < pipes.size()){
+                if(dup2(fds[gates_counter + 1], 1) < 0){
                     *status_address = ERROR;
+                    perror("not end dup troubles");
+                }
             }
-            if (commands_vector[0] == "exit") {
-                *status_address = EXIT;
+
+            if(pipe_number != 0 ){
+                if(dup2(fds[gates_counter-2], 0) < 0){
+                    *status_address = ERROR;
+                    perror(" not start problemes");
+                }
+            }
+
+            //закроем
+            for(i = 0; i < 2*pipes.size(); i++){
+                close(fds[i]);
+            }
+            // так как у нас были вектора...
+            vector <string> commands_vector = split(pipes[pipe_number]);
+            vector<const char *> argv;
+
+            // преобразуем стринг в массив указателей
+            for (int i = 0; i < commands_vector.size(); i++)
+            {
+                argv.push_back(commands_vector[i].c_str());
+            }
+            // добавим в конец нулевой указатель
+            argv.push_back(nullptr);
+
+            if (execvp(argv[0], (char * const *)&argv[0]) == -1) {
+                *status_address = ERROR;
+
+            }
+            else {perror("Not ok1 \n");
+            }
+
+        } else if(pid < 0){
+            perror("error");
+            *status_address = ERROR;
+
+        }
+
+        pipe_number++;
+        gates_counter+=2;
+    }
+
+    // close all pipes
+    for(i = 0; i < 2 * pipes.size(); i++){
+        close(fds[i]);
+    }
+    //wait
+    for(i = 0; i < pipes.size(); i++) {
+        wait(&status);
+    }
+
+}
+
+
+string run_without_pipes(int * status_address, vector <string> pipes, map <string, int> mapping) {
+    string result;
+    vector <string> commands_vector = split(pipes[0]);
+
+    if (!commands_vector.empty()) {
+
+        switch (mapping[commands_vector[0]]) {
+
+            case mine_pwd:
+                result = my_pwd(path, status_address);
                 break;
 
-            }
+            case mine_cd:
+                my_cd(status_address, commands_vector);
+                break;
+
+            case mine_exit:
+                result = my_exit(status_address);
+                cout << result;
+                break;
+
+            case mine_time:
+                break;
+
+            default:
+                my_exec(status_address, commands_vector);
 
         }
-
-        if ((commands_vector.size() == 2) and (commands_vector[0] == "cd")) {
-            if(chdir(commands_vector[1].c_str()) == 0) {
-                *status_address = OK;
-            }
-            else
-                *status_address = ERROR;
-        }
-
-        if (commands_vector.size() > 2) {
-            cout << "I can't do this :(\n";
-        }
-
-        string current_place = my_pwd(path, status_address);
-        cout << current_place << " > " << result;
-
-
     }
-}
+    return result;
 
-string my_pwd(string type_of_address, int * status_address) {
-
-    char cwd[PATHMAX];
-
-    if (getcwd(cwd, sizeof(cwd)) != nullptr) {
-        *status_address = OK;
-    } else {
-        perror("my_pwd(way) error");
-        *status_address = ERROR;
-    }
-
-    // char * to string
-    string str(cwd);
-
-    if (type_of_address == "way") {
-        return str;
-    }
-
-    if (type_of_address == "directory") {
-        unsigned long pos = str.find_last_of('/');
-        str.erase(str.begin(), str.begin()+pos+1);
-    }
-
-    return str;
-
-}
-
-vector<string> split(const string& commands) {
-    vector<string> splitted;
-    typedef string::size_type string_size;
-    string_size i = 0;
-
-    while (i != commands.size()) {
-
-        while (i != commands.size() && isspace(commands[i]))
-            ++i;
-
-        string_size j = i;
-
-        while (j != commands.size() && !isspace(commands[j]))
-            j++;
-
-        if (i != j) {
-
-            splitted.push_back(commands.substr(i, j - i));
-            i = j;
-        }
-    }
-    return splitted;
 }

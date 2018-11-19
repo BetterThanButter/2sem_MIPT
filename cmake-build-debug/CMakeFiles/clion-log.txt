@@ -1,4 +1,4 @@
-/home/agavrilenko/Coding/C++/CLion/CLion-2018.2.4/clion-2018.2.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/agavrilenko/CLionProjects/Babochev/try_2017
+/home/agavrilenko/Coding/C++/CLion/CLion-2018.2.4/clion-2018.2.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/agavrilenko/Coding/2sem_MIPT-master
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug
+-- Build files have been written to: /home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug

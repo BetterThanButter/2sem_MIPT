@@ -1,3 +1,3 @@
-/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/CMakeFiles/try_2017.dir
+/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/CMakeFiles/try_2017.dir

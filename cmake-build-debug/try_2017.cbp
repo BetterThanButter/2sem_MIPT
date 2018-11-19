@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug"/>
+				<Option working_dir="/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug"/>
+				<Option working_dir="/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug"/>
+				<Option working_dir="/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="try_2017">
-				<Option output="/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/try_2017" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug"/>
+				<Option output="/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/try_2017" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 try_2017"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 try_2017"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="try_2017/fast">
-				<Option output="/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/try_2017" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug"/>
+				<Option output="/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/try_2017" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,17 +77,26 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 try_2017/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/CLionProjects/Babochev/try_2017/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 try_2017/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/agavrilenko/Coding/2sem_MIPT-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/agavrilenko/CLionProjects/Babochev/try_2017/main.cpp">
+		<Unit filename="/home/agavrilenko/Coding/2sem_MIPT-master/consts.h">
 			<Option target="try_2017"/>
 		</Unit>
-		<Unit filename="/home/agavrilenko/CLionProjects/Babochev/try_2017/CMakeLists.txt">
+		<Unit filename="/home/agavrilenko/Coding/2sem_MIPT-master/main.cpp">
+			<Option target="try_2017"/>
+		</Unit>
+		<Unit filename="/home/agavrilenko/Coding/2sem_MIPT-master/my_functions.h">
+			<Option target="try_2017"/>
+		</Unit>
+		<Unit filename="/home/agavrilenko/Coding/2sem_MIPT-master/string_functions.h">
+			<Option target="try_2017"/>
+		</Unit>
+		<Unit filename="/home/agavrilenko/Coding/2sem_MIPT-master/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
