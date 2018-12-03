@@ -5,6 +5,13 @@
 #ifndef TRY_2017_STRING_FUNCTIONS_H
 #define TRY_2017_STRING_FUNCTIONS_H
 
+#include <fcntl.h>
+#include <dirent.h>
+#include <fnmatch.h>
+#include <sys/stat.h>
+#include <sstream>
+#include <glob.h>
+
 vector<string> split(const string& commands) {
     vector<string> splitted;
     typedef string::size_type string_size;
@@ -26,6 +33,73 @@ vector<string> split(const string& commands) {
             i = j;
         }
     }
+
+    for (int i = 0; i < splitted.size(); i++) {
+
+        unsigned long full_mask = string::npos;
+        unsigned long solo_mask = string::npos;
+
+        if (((full_mask = splitted[i].find_first_of('*')) != string::npos) or ((solo_mask = splitted[i].find_first_of('?')) != string::npos)) {
+
+            string path = splitted[i];
+            splitted.erase(splitted.begin() + i, splitted.begin() + i + 1);
+
+            glob_t glob_result;
+            glob(path.c_str(),GLOB_TILDE,NULL,&glob_result);
+            vector<string> ret;
+            for(unsigned int i=0;i<glob_result.gl_pathc;++i){
+                splitted.push_back(string(glob_result.gl_pathv[i]));
+            }
+            globfree(&glob_result);
+//            string full_path;
+//            int pos;
+//            struct stat object;
+//            struct dirent * dir;
+//            // пути
+//            if ((pos = splitted[i].find_last_of('/', min(full_mask, solo_mask))) != string::npos) {
+//                full_path = splitted[i].substr(0, pos);
+//            }
+//
+//            else {
+//                full_path = ".";
+//            }
+//
+//            // занесем инфу
+//            if(stat(full_path.c_str(), &object) == -1) {
+//                perror(path.c_str());
+//                exit(EXIT_FAILURE);
+//            }
+//            //если папка то выполняем
+//            if (S_ISDIR(object.st_mode)) {
+//
+//                DIR * our_dir= opendir(full_path.c_str());
+//
+//                if (our_dir == nullptr) {
+//                    perror("ошибка в регулярном выражении");
+//                    exit(EXIT_FAILURE);
+//                }
+//                //обход папки
+//                struct dirent *ent;
+//                while ((ent = readdir (our_dir)) != nullptr) {
+//
+//                    string name;
+//                    if (full_path != ".") {
+//                        name = full_path + "/" + ent->d_name;
+//                    }
+//                    else {
+//                        name = ent->d_name;
+//                    }
+//                    if (fnmatch(splitted[i].c_str(), name.c_str(), FNM_PATHNAME) == 0) {
+//                        splitted.insert(splitted.begin() + i + 1, name);
+//                    }
+//                }
+//                closedir(our_dir);
+//            }
+//
+
+        }
+    }
+
     return splitted;
 }
 

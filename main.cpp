@@ -16,6 +16,7 @@
 
 using namespace std;
 
+const int KEY_UP = 72;
 const int EXIT =  777;
 const int OK =  1;
 const int ERROR =  666;
@@ -80,7 +81,7 @@ void in_progress(int * status_address) {
 
 
     map <string, int> mapping;
-
+    string history;
     mapping["pwd"]  = mine_pwd;
     mapping["cd"]    = mine_cd;
     mapping["exit"] = mine_exit;
@@ -101,6 +102,13 @@ void in_progress(int * status_address) {
             cout << endl;
             exit(EXIT_FAILURE);
         }
+        if (commands_line == "history") {
+            commands_line = history;
+        }
+        else {
+            history = commands_line;
+        }
+
         vector <string> pipes = split_for_pipes(commands_line);
 
         if (pipes.size() == 1) {
