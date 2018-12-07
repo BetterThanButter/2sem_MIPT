@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <unistd.h>
@@ -13,6 +14,7 @@
 #include <cmath>
 #include <utility>
 #include <cstring>
+#include <iomanip>
 
 using namespace std;
 
@@ -48,10 +50,11 @@ string my_pwd(string type_of_address, int * status_address) ;
 
 string my_exit(int * status_address) ;
 
-string my_cd(int * status_address, vector <string> commands_vector);
+string my_cd(int * in, int * out, int * status_address, vector <string> commands_vector);
 
-string my_exec(int * status_address, vector <string> commands_vector);
+string my_exec( const int * in, const int * out, int * status_address, vector <string> commands_vector);
 
+int myshell_time(int in, int out, std::vector<std::string>& arguments);
 //void my_time(int * in, int * out, int * status_address, vector <string> commands_vector);
 
 
@@ -76,16 +79,15 @@ void get_started(int * status_address) {
 
 }
 
-
 void in_progress(int * status_address) {
 
 
     map <string, int> mapping;
     string history;
     mapping["pwd"]  = mine_pwd;
-    mapping["cd"]    = mine_cd;
+    mapping["cd"]   = mine_cd;
     mapping["exit"] = mine_exit;
-    mapping["time"]  = mine_time;
+    mapping["time"] = mine_time;
 
     int in = 0;
     int out = 1;
@@ -96,17 +98,27 @@ void in_progress(int * status_address) {
     while (*status_address != EXIT) {
 
 
-
-        // getline(cin, commands_line);
-        if(!getline(cin, commands_line)) {
+        if(!getline(cin,commands_line)) {
             cout << endl;
             exit(EXIT_FAILURE);
         }
-        if (commands_line == "history") {
-            commands_line = history;
-        }
-        else {
-            history = commands_line;
+
+
+        bool TimeFlag = false;
+        struct tms buf;
+        times(&buf);
+        clock_t t = clock();
+
+        string firstWord = commands_line.substr(0, commands_line.find(" "));
+
+        if (firstWord == "time") {
+
+            TimeFlag = true;
+
+            commands_line=commands_line.substr(commands_line.find_first_of(" \t")+1);
+            if (commands_line.empty()) {
+                continue;
+            }
         }
 
         vector <string> pipes = split_for_pipes(commands_line);
@@ -117,6 +129,24 @@ void in_progress(int * status_address) {
 
         else {
             run_with_pipes(status_address, pipes);
+        }
+
+        if (TimeFlag) {
+            t = clock() - t;
+            times(&buf);
+
+            double rm, rs, um,us, sm, ss;
+            rm = floor(((double) t) * 1000 / CLOCKS_PER_SEC / 60);
+            rs = ((double) t) * 1000 / CLOCKS_PER_SEC - rm * 60;
+            um = floor((double) (buf.tms_utime + buf.tms_cutime) * 1000 / CLOCKS_PER_SEC / 60);
+            us = (double) (buf.tms_utime + buf.tms_cutime) * 1000 / CLOCKS_PER_SEC - um * 60;
+            sm = floor((double) (buf.tms_stime + buf.tms_cstime) * 1000 / CLOCKS_PER_SEC / 60);
+            ss = (double) (buf.tms_stime + buf.tms_cstime) * 1000 / CLOCKS_PER_SEC - sm * 60;
+
+            cout << "real "  << rm << "m"  << rs << "s" << endl;
+            cout << "user "  << um << "m"  << us << "s" << endl;
+            cout << "sys  "  << sm << "m"  << ss << "s" << endl;
+
         }
 
 
@@ -179,7 +209,7 @@ void run_with_pipes(int * status_address, vector <string> pipes) {
             }
 
             //закроем
-            for (i = 0; i < 2 * pipes.size(); i++) {
+            for (i = 0; i <= 2 * pipes.size(); i++) {
                 close(fds[i]);
             }
 
@@ -200,25 +230,26 @@ void run_with_pipes(int * status_address, vector <string> pipes) {
                 perror("Not ok1 \n");
             }
 
-            exit (0);
+
 
         } else if(pid < 0){
-            perror("error");
+            perror("pipe error");
             exit(EXIT_FAILURE);
         }
-
+        //wait(nullptr);
         pipe_number++;
         j+=2;
     }
 
     // close all pipes
-    for(i = 0; i < 2 * pipes.size(); i++){
+    for(i = 0; i <= 2 * pipes.size(); i++){
         close(fds[i]);
     }
     //wait
     for(i = 0; i < pipes.size(); i++) {
         wait(&status);
     }
+    wait(nullptr);
 
 }
 
@@ -261,11 +292,14 @@ string my_exec(const int * in, const int * out, int * status_address, vector <st
         // выполняем после перенаправления
 
         if (execvp(argv[0], (char * const *)&argv[0]) == -1) {
+            perror("execvp error");
             *status_address = ERROR;
             exit(EXIT_FAILURE);
         }
-        cout << "in my_exec";
+
+
     }
+
     else {
         if (pid  > 0) {
             while (!WIFEXITED(status) && !WIFSIGNALED(status)) {
@@ -274,6 +308,7 @@ string my_exec(const int * in, const int * out, int * status_address, vector <st
         }
         else {
             *status_address = ERROR;
+            perror("wait error");
         }
     }
     wait(nullptr);
@@ -324,16 +359,13 @@ string run_without_pipes(int * in, int * out, int * status_address, vector <stri
                 break;
 
             case mine_cd:
-                result = my_cd(status_address, commands_vector);
+                result = my_cd(in, out, status_address, commands_vector);
                 break;
 
             case mine_exit:
                 result = my_exit(status_address);
                 cout << result;
                 break;
-
-            case mine_time:
-                // my_time(in,out,status_address,commands_vector);
 
             default:
                 result = my_exec(in, out, status_address, commands_vector);
@@ -377,7 +409,7 @@ string my_exit(int * status_address) {
     return result;
 }
 
-string my_cd(int * status_address, vector <string> commands_vector) {
+string my_cd(int * in, int * out, int * status_address, vector <string> commands_vector) {
 
 
     struct passwd *pw = getpwuid(getuid());
@@ -387,17 +419,20 @@ string my_cd(int * status_address, vector <string> commands_vector) {
     if (commands_vector.size() == 1) {
         if(chdir(homedir) == 0) {
             *status_address = OK;
+
         }
         else {
             *status_address = ERROR;
+            perror("cd error");
         }
 
     }
-
+    string result;
 
     if (commands_vector.size() == 2) {
 
-        if (commands_vector[1] == "..") {
+        if (commands_vector[1] == "-") {
+
 
         } else {
             if (chdir(commands_vector[1].c_str()) == 0) {
@@ -411,3 +446,4 @@ string my_cd(int * status_address, vector <string> commands_vector) {
     string nothing = "";
     return nothing;
 }
+

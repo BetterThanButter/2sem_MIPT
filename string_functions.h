@@ -44,58 +44,31 @@ vector<string> split(const string& commands) {
             string path = splitted[i];
             splitted.erase(splitted.begin() + i, splitted.begin() + i + 1);
 
+
             glob_t glob_result;
-            glob(path.c_str(),GLOB_TILDE,NULL,&glob_result);
-            vector<string> ret;
-            for(unsigned int i=0;i<glob_result.gl_pathc;++i){
+            memset(&glob_result, 0, sizeof(glob_result));
+
+
+            int return_value = glob(path.c_str(), GLOB_TILDE, NULL, &glob_result);
+            if(return_value != 0) {
+                globfree(&glob_result);
+                cout << "no such file o directory\n";
+               // stringstream ss;
+               // ss << "glob() failed with return_value " << return_value << endl;
+              //  throw std::runtime_error(ss.str());
+                vector <string> nothing ;
+                return nothing;
+
+            }
+
+            // collect all the filenames into a std::list<std::string>
+            //vector<string> filenames;
+            for(size_t i = 0; i < glob_result.gl_pathc; ++i) {
                 splitted.push_back(string(glob_result.gl_pathv[i]));
             }
+
+            // cleanup
             globfree(&glob_result);
-//            string full_path;
-//            int pos;
-//            struct stat object;
-//            struct dirent * dir;
-//            // пути
-//            if ((pos = splitted[i].find_last_of('/', min(full_mask, solo_mask))) != string::npos) {
-//                full_path = splitted[i].substr(0, pos);
-//            }
-//
-//            else {
-//                full_path = ".";
-//            }
-//
-//            // занесем инфу
-//            if(stat(full_path.c_str(), &object) == -1) {
-//                perror(path.c_str());
-//                exit(EXIT_FAILURE);
-//            }
-//            //если папка то выполняем
-//            if (S_ISDIR(object.st_mode)) {
-//
-//                DIR * our_dir= opendir(full_path.c_str());
-//
-//                if (our_dir == nullptr) {
-//                    perror("ошибка в регулярном выражении");
-//                    exit(EXIT_FAILURE);
-//                }
-//                //обход папки
-//                struct dirent *ent;
-//                while ((ent = readdir (our_dir)) != nullptr) {
-//
-//                    string name;
-//                    if (full_path != ".") {
-//                        name = full_path + "/" + ent->d_name;
-//                    }
-//                    else {
-//                        name = ent->d_name;
-//                    }
-//                    if (fnmatch(splitted[i].c_str(), name.c_str(), FNM_PATHNAME) == 0) {
-//                        splitted.insert(splitted.begin() + i + 1, name);
-//                    }
-//                }
-//                closedir(our_dir);
-//            }
-//
 
         }
     }

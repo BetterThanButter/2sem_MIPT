@@ -12,6 +12,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d9c926b-094c-4927-877f-05fd40f7e733" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kek" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/new.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
@@ -28,13 +32,13 @@
     <session id="397869167">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="2" />
-          <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -50,28 +54,30 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="295" />
-          <entry key="h" value="596" />
+          <entry key="cpp" value="1298" />
+          <entry key="h" value="1005" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="891" />
+          <entry key="ObjectiveC" value="2303" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="751">
-              <caret line="413" selection-start-line="413" selection-end-line="413" />
+            <state relative-caret-position="917">
+              <caret line="320" column="118" lean-forward="true" selection-start-line="320" selection-start-column="118" selection-end-line="320" selection-end-column="118" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <element signature="e#1546#2706#0" />
-                <element signature="e#2708#4816#0" />
+                <element signature="e#6271#7687#0" />
+                <element signature="e#9401#9905#0" />
+                <element signature="e#9907#10031#0" />
+                <element signature="e#10033#10889#0" />
               </folding>
             </state>
           </provider>
@@ -95,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/string_functions.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
+            <state relative-caret-position="540">
+              <caret line="54" column="53" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="53" />
               <folding>
                 <element signature="e#119#137#0" expanded="true" />
               </folding>
@@ -112,6 +118,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>execvp</find>
+      <find>fork</find>
+      <find>kek</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -122,8 +130,8 @@
       <list>
         <option value="$PROJECT_DIR$/consts.h" />
         <option value="$PROJECT_DIR$/my_functions.h" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/string_functions.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
   </component>
@@ -134,7 +142,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
+    <option name="x" value="993" />
     <option name="y" value="25" />
     <option name="width" value="927" />
     <option name="height" value="1055" />
@@ -160,7 +168,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/CLionProjects/Shell/Allmost2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -209,12 +217,13 @@
       <workItem from="1542960411714" duration="1643000" />
       <workItem from="1543402281467" duration="1593000" />
       <workItem from="1543660596215" duration="7152000" />
-      <workItem from="1543671453241" duration="5285000" />
+      <workItem from="1543671453241" duration="17532000" />
+      <workItem from="1544170953761" duration="10515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25200000" />
+    <option name="totallyTimeSpent" value="47962000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -247,6 +256,17 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>380</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/consts.h" />
     <entry file="file://$PROJECT_DIR$/consts.h">
@@ -263,24 +283,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/string_functions.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="751">
-          <caret line="413" selection-start-line="413" selection-end-line="413" />
+        <state relative-caret-position="540">
+          <caret line="54" column="53" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="53" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#1546#2706#0" />
-            <element signature="e#2708#4816#0" />
+            <element signature="e#119#137#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/string_functions.h">
+    <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
+        <state relative-caret-position="917">
+          <caret line="320" column="118" lean-forward="true" selection-start-line="320" selection-start-column="118" selection-end-line="320" selection-end-column="118" />
           <folding>
-            <element signature="e#119#137#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#6271#7687#0" />
+            <element signature="e#9401#9905#0" />
+            <element signature="e#9907#10031#0" />
+            <element signature="e#10033#10889#0" />
           </folding>
         </state>
       </provider>
