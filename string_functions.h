@@ -52,7 +52,7 @@ vector<string> split(const string& commands) {
             int return_value = glob(path.c_str(), GLOB_TILDE, NULL, &glob_result);
             if(return_value != 0) {
                 globfree(&glob_result);
-                cout << "no such file o directory\n";
+                cout << "невозможно получить доступ: Нет такого файла или каталога\n";
                // stringstream ss;
                // ss << "glob() failed with return_value " << return_value << endl;
               //  throw std::runtime_error(ss.str());
