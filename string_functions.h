@@ -13,10 +13,11 @@
 #include <glob.h>
 
 vector<string> split(const string& commands) {
+
     vector<string> splitted;
     typedef string::size_type string_size;
     string_size i = 0;
-
+    // spliting particular coomand to parts
     while (i != commands.size()) {
 
         while (i != commands.size() && isspace(commands[i]))
@@ -33,41 +34,41 @@ vector<string> split(const string& commands) {
             i = j;
         }
     }
-
+    // checking special symbols
     for (int i = 0; i < splitted.size(); i++) {
 
         unsigned long full_mask = string::npos;
         unsigned long solo_mask = string::npos;
+
+        // check for special symbols
 
         if (((full_mask = splitted[i].find_first_of('*')) != string::npos) or ((solo_mask = splitted[i].find_first_of('?')) != string::npos)) {
 
             string path = splitted[i];
             splitted.erase(splitted.begin() + i, splitted.begin() + i + 1);
 
-
+            // seting glob function
             glob_t glob_result;
             memset(&glob_result, 0, sizeof(glob_result));
 
 
             int return_value = glob(path.c_str(), GLOB_TILDE, NULL, &glob_result);
+            // check if glob return nothing
             if(return_value != 0) {
                 globfree(&glob_result);
-                cout << "невозможно получить доступ: Нет такого файла или каталога\n";
-               // stringstream ss;
-               // ss << "glob() failed with return_value " << return_value << endl;
-              //  throw std::runtime_error(ss.str());
+                cout << "невозможно получить доступ к: '" <<  path << "' Нет такого файла или каталога\n";
                 vector <string> nothing ;
                 return nothing;
 
             }
 
-            // collect all the filenames into a std::list<std::string>
-            //vector<string> filenames;
+            // push our new filenames in args vector
+
             for(size_t i = 0; i < glob_result.gl_pathc; ++i) {
                 splitted.push_back(string(glob_result.gl_pathv[i]));
             }
 
-            // cleanup
+            // clean glob
             globfree(&glob_result);
 
         }
@@ -76,6 +77,7 @@ vector<string> split(const string& commands) {
     return splitted;
 }
 
+// just basic function of splitiong string for vector <string> by '|'
 vector <string> split_for_pipes(const string& commands) {
 
     string line = commands;
