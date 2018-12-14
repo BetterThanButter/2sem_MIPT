@@ -11,9 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d9c926b-094c-4927-877f-05fd40f7e733" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/string_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/string_functions.h" afterDir="false" />
-    </list>
+    <list default="true" id="0d9c926b-094c-4927-877f-05fd40f7e733" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +23,7 @@
     <session id="397869167">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.11" value="1" />
@@ -62,18 +60,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="751">
-              <caret line="550" lean-forward="true" selection-start-line="550" selection-end-line="550" />
+            <state relative-caret-position="496">
+              <caret line="434" column="68" selection-start-line="434" selection-start-column="31" selection-end-line="434" selection-end-column="68" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
                 <element signature="e#1330#1598#0" />
                 <element signature="e#1600#1732#0" />
                 <element signature="e#1734#1902#0" />
                 <element signature="e#9342#10952#0" />
-                <element signature="e#10954#12665#0" />
                 <element signature="e#13280#13404#0" />
                 <element signature="e#13406#14210#0" />
               </folding>
@@ -99,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/string_functions.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+            <state relative-caret-position="1050">
+              <caret line="76" column="20" lean-forward="true" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="20" />
               <folding>
                 <element signature="e#119#137#0" expanded="true" />
               </folding>
@@ -128,8 +125,8 @@
       <list>
         <option value="$PROJECT_DIR$/consts.h" />
         <option value="$PROJECT_DIR$/my_functions.h" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/string_functions.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
   </component>
@@ -142,7 +139,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="67" />
     <option name="y" value="27" />
-    <option name="width" value="917" />
+    <option name="width" value="907" />
     <option name="height" value="1053" />
   </component>
   <component name="ProjectView">
@@ -166,7 +163,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/CLionProjects/Shell/B" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -220,12 +217,12 @@
       <workItem from="1544285933887" duration="10000" />
       <workItem from="1544541870210" duration="906000" />
       <workItem from="1544623912150" duration="462000" />
-      <workItem from="1544635411238" duration="4575000" />
+      <workItem from="1544635411238" duration="7046000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58549000" />
+    <option name="totallyTimeSpent" value="61020000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -274,29 +271,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/string_functions.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="76" column="20" lean-forward="true" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="20" />
+          <folding>
+            <element signature="e#119#137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="751">
-          <caret line="550" lean-forward="true" selection-start-line="550" selection-end-line="550" />
+        <state relative-caret-position="496">
+          <caret line="434" column="68" selection-start-line="434" selection-start-column="31" selection-end-line="434" selection-end-column="68" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
             <element signature="e#1330#1598#0" />
             <element signature="e#1600#1732#0" />
             <element signature="e#1734#1902#0" />
             <element signature="e#9342#10952#0" />
-            <element signature="e#10954#12665#0" />
             <element signature="e#13280#13404#0" />
             <element signature="e#13406#14210#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/string_functions.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
-          <folding>
-            <element signature="e#119#137#0" expanded="true" />
           </folding>
         </state>
       </provider>

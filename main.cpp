@@ -18,7 +18,8 @@
 #include <csignal>
 
 using namespace std;
-static bool already_invited = false;
+
+static bool already_invited = true;
 const int EXIT =  777;
 const int OK =  1;
 const int ERROR =  666;
@@ -37,9 +38,6 @@ const string dir = "dir";
 
 #include "string_functions.h"
 
-
-void get_started(int * status_address);
-
 void in_progress(int * status_address);
 
 string run_without_pipes(int * in, int * out, int * status_address, vector <string> pipes, map <string, int> mapping);
@@ -56,33 +54,30 @@ string my_exec( const int * in, const int * out, int * status_address, vector <s
 
 void sigintHandler(int sig_num)
 {
-    already_invited = true;
-    signal(SIGINT, sigintHandler);
-    int status_address = OK;
-    string current_place = my_pwd(dir, &status_address);
-    // print invite
-    cout << endl << current_place << " > ";
-    fflush(stdout);
+    if(already_invited) {
+        int status_address = OK;
+        string current_place = my_pwd(dir, &status_address);
+        // print invite
+        cout << endl << current_place << " > ";
+        //already_invited = true;
+        fflush(stdout);
+    }
+    // already_invited = false;
 }
 
 int main() {
 
     int status = OK;
     //invite
-    get_started(&status);
+    cout << "Let's get started!\n";
     //main loop
+    signal(SIGINT, sigintHandler);
+
     in_progress(&status);
 
     return 0;
 }
 
-void get_started(int * status_address) {
-    //invite
-    cout << "Let's get started!\n";
-    string start = my_pwd(dir, status_address);
-    cout << start << " > ";
-
-}
 
 void in_progress(int * status_address) {
 
@@ -99,14 +94,20 @@ void in_progress(int * status_address) {
     string result;
     bool TimeFlag = false;
 
-    signal(SIGINT, sigintHandler);
-
     while (*status_address != EXIT) {
+
+
+        string current_place = my_pwd(dir, status_address);
+        // print invite
+        cout << current_place << " > ";
 
         if(!getline(cin,commands_line)) {
             cout << endl;
+            cout << "Ok, see u!" << endl;
             exit(EXIT_FAILURE);
         }
+
+        already_invited = false;
 
         //initialize time command
         struct tms buf;
@@ -159,18 +160,13 @@ void in_progress(int * status_address) {
         }
 
         if (*status_address == EXIT) {
-            perror("STATUS = EXIT");
+          //  perror("STATUS = EXIT");
             break;
         }
-        // If was CTRL+C invite is already printed, else print it:
-        if (!already_invited) {
-            string current_place = my_pwd(dir, status_address);
-            // print invite
-            cout << current_place << " > ";
-        }
+
         // update result and flags
         result = "";
-        already_invited = false;
+        already_invited = true;
         TimeFlag = false;
 
 
@@ -193,7 +189,7 @@ void run_with_pipes(int * in, int * out, int * status_address, vector <string> p
         }
     }
     int j = 0;
-
+    // chech first and last pipe elements for redirection
     vector <string> first = split(pipes[0]);
     vector <string> last = split(pipes[pipes.size() - 1]);
 
@@ -225,7 +221,6 @@ void run_with_pipes(int * in, int * out, int * status_address, vector <string> p
             *out = open(where, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 
             if (*out < 0) {
-
                 perror("error redirection of >");
             }
             //delete of useless args
@@ -243,7 +238,7 @@ void run_with_pipes(int * in, int * out, int * status_address, vector <string> p
 
             //redirection in or out of pipeline
 
-            if (*in != STDIN && pipe_number == 0) {
+            if (*in != STDIN and pipe_number == 0) {
                 if(dup2(*in, 0) < 0) {
                     perror("input redirection");
                 }
@@ -413,13 +408,20 @@ string my_exec(const int * in, const int * out, int * status_address, vector <st
 
 string run_without_pipes(int * in, int * out, int * status_address, vector <string> pipes, map <string, int> mapping) {
 
-    string result;
+    string result = "";
     vector <string> commands_vector = split(pipes[0]);
+
+    bool input_redir = false;
+    bool output_redir = false;
+    bool redir_error = false;
 
     for (int i = 0; i < commands_vector.size(); i++) {
 
         if(commands_vector[i] == "<") {
-
+            if (input_redir) {
+                cerr << "double input rediretion" << endl;
+            }
+            input_redir = true;
             const char * where = commands_vector[i + 1].c_str();
             *in = open(where, O_RDONLY, S_IRWXU);
             if (*in < 0) {
@@ -428,9 +430,13 @@ string run_without_pipes(int * in, int * out, int * status_address, vector <stri
             }
             commands_vector.erase(commands_vector.begin() + i, commands_vector.begin() + i + 2);
             i--;
+
         }
         if(commands_vector[i] == ">") {
-
+            if (output_redir) {
+                cerr << "double output rediretion" << endl;
+            }
+            output_redir = true;
             const char * where = commands_vector[i + 1].c_str();
             *out = open(where, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 
@@ -440,10 +446,11 @@ string run_without_pipes(int * in, int * out, int * status_address, vector <stri
             }
             commands_vector.erase(commands_vector.begin() + i, commands_vector.begin() + i + 2);
             i--;
+
         }
     }
 
-    if (!commands_vector.empty()) {
+    if (!commands_vector.empty() /*&& !redir_error*/) {
 
         switch (mapping[commands_vector[0]]) {
 
